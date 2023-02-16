@@ -3,7 +3,8 @@ from setuptools import find_packages, setup
 setup(
     name="vulcan_ms_core",
     packages=find_packages(include=["vulcan_ms_core"]),
-    version="0.1.0",
+    include_package_data=True,
+    version="0.1.1",
     description="Library for Vulcan Microservices",
     author="Overnight",
     license="MIT",
