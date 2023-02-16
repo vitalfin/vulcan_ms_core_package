@@ -30,4 +30,4 @@ jobs:
         echo TWINE_USERNAME: $TWINE_USERNAME
         echo TWINE_PASSWORD: $TWINE_PASSWORD
         python setup.py sdist bdist_wheel
-        twine upload dist/*
+        twine upload --verbose dist/*
