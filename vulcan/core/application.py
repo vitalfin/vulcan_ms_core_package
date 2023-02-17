@@ -197,7 +197,7 @@ def register_startup_event(
     async def _startup() -> None:  # noqa: WPS430
         db_core._setup_db(app)
         # setup_opentelemetry(app)
-        setup_prometheus(app)
+        # setup_prometheus(app)
         pass  # noqa: WPS420
 
     return _startup

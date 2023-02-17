@@ -9,7 +9,7 @@ TEMP_DIR = Path(gettempdir())
 
 class Config(BaseSettings):
     APP_NAME: str = "vulcan-fastapi-ms"
-    ENVIROMENT: str = "development"
+    ENVIRONMENT: str = "development"
     LOG_LEVEL: str = "DEBUG"
     DEBUG: bool = True
     APP_HOST: str = "0.0.0.0"

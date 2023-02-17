@@ -78,13 +78,13 @@ async def get_db_session(request: Request) -> AsyncGenerator[AsyncSession, None]
     :yield: database session.
     """
     session_id = str(uuid4())
-    session: AsyncSession = request.app.state.db_session_factory()
     context = set_session_context(session_id=session_id)
+    session: AsyncSession = request.app.state.db_session_factory()
     logger.trace("get_db_session: " + str(session))
 
     try:  # noqa: WPS501
         yield session
     finally:
         await session.commit()
-        await session.remove()
+        await session.close()
         reset_session_context(context=context)
