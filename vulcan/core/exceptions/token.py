@@ -1,4 +1,4 @@
-from core.exceptions.base import CustomException
+from vulcan.core.exceptions.base import CustomException
 
 
 class DecodeTokenException(CustomException):

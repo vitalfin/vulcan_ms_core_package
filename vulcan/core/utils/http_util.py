@@ -1,7 +1,7 @@
 from http import HTTPStatus
 
 import requests
-from core.util import logger
+from vulcan.core.utils import logger
 from fastapi import HTTPException
 from requests.exceptions import HTTPError
 

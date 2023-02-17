@@ -2,8 +2,8 @@ from datetime import datetime, timedelta
 
 import jwt
 
-from core.config import config
-from core.exceptions import DecodeTokenException, ExpiredTokenException
+from vulcan.core.config import config
+from vulcan.core.exceptions import DecodeTokenException, ExpiredTokenException
 
 
 class TokenHelper:

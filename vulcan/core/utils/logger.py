@@ -1,5 +1,5 @@
 from logging import INFO
-from .config_env import load
+from vulcan.core.config import config
 
 TRACE_VALUE = "TRACE"
 DEBUG_VALUE = "DEBUG"
@@ -7,7 +7,7 @@ INFO_VALUE = "INFO"
 WARN_VALUE = "WARN"
 ERROR_VALUE = "ERROR"
 
-LOG_LEVEL = load("LOG_LEVEL")
+LOG_LEVEL = str(config.LOG_LEVEL).upper()
 # LOG_LEVEL = INFO_VALUE
 
 

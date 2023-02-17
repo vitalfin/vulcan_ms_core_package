@@ -45,3 +45,9 @@ class DuplicateValueException(CustomException):
     code = HTTPStatus.UNPROCESSABLE_ENTITY
     error_code = HTTPStatus.UNPROCESSABLE_ENTITY
     message = HTTPStatus.UNPROCESSABLE_ENTITY.description
+
+
+class NotImplementException(CustomException):
+    code = HTTPStatus.NOT_IMPLEMENTED
+    error_code = HTTPStatus.NOT_IMPLEMENTED
+    message = HTTPStatus.NOT_IMPLEMENTED.description

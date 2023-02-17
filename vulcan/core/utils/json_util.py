@@ -1,6 +1,6 @@
 import json
 
-from core.util import logger
+from vulcan.core.utils import logger
 
 
 def pretty_json(jData):
