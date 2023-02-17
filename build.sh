@@ -1,1 +1,3 @@
-python setup.py bdist_whee
+python setup.py bdist_wheel
+
+pip install -e .
