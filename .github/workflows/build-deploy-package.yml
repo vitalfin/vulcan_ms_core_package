@@ -4,9 +4,9 @@ on:
   push:
     branches:
     - main
-
-  release:
-    types: [created]
+    - feature-*
+    tags:
+    - "v*.*.*"
 
 jobs:
   deploy:
@@ -18,21 +18,39 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: "3.10"
-    - uses: szenius/set-timezone@v1.0
-      with:
-        timezoneLinux: "UTC-3"
-        timezoneMacos: "UTC-3"
-        timezoneWindows: "UTC-3"
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install wheel twine flit
+        pip install wheel twine flit pytz
+
+    - name: Check Version
+      id: check-version
+      env:
+        VERSION: ${{ github.head_ref || github.ref_name }}
+      run: |
+        git_hash="-"$(git rev-parse --short "$GITHUB_SHA")
+        echo "git_hash: "$git_hash
+
+        [[ "${VERSION}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || echo prerelease=true >> $GITHUB_OUTPUT
+        [[ "${VERSION}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || echo git_hash=$git_hash >> $GITHUB_OUTPUT
+
+    - name: Create Release
+      continue-on-error: true
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "dist/*"
+        token: ${{ secrets.GITHUB_TOKEN }}
+        draft: false
+        commit: ${{ github.head_ref || github.ref_name }}${{ steps.check-version.outputs.git_hash }}
+        tag: ${{ github.head_ref || github.ref_name }}${{ steps.check-version.outputs.git_hash }}
+        prerelease: steps.check-version.outputs.prerelease == 'true'
+
     - name: Build and publish
       env:
         TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
         TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+        VERSION: ${{ github.head_ref || github.ref_name }}
       run: |
-        echo TWINE_USERNAME: $TWINE_USERNAME
-        echo TWINE_PASSWORD: $TWINE_PASSWORD
+        echo VERSION: $VERSION
         flit build
         twine upload --verbose dist/*
