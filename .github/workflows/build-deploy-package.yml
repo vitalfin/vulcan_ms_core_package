@@ -36,6 +36,8 @@ jobs:
         artifacts: "dist/*"
         token: ${{ secrets.GITHUB_TOKEN }}
         draft: false
+        commit: ${{ github.head_ref || github.ref_name }}
+        tag: ${{ github.head_ref || github.ref_name }}
         prerelease: steps.check-version.outputs.prerelease == 'true'
 
     - name: Build and publish
