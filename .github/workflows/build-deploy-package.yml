@@ -35,6 +35,7 @@ jobs:
         [[ "${VERSION}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || echo git_hash=$git_hash >> $GITHUB_OUTPUT
 
     - name: Create Release
+      continue-on-error: true
       uses: ncipollo/release-action@v1
       with:
         artifacts: "dist/*"
