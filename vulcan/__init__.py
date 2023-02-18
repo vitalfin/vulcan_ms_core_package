@@ -16,7 +16,7 @@ def generate_version(name: str):
     date = generate_datetime_with_timezone()
     if name == "main":
         return date + "rc1"
-    elif name.startswith("feature-"):
+    elif name.startswith("feature-") or name.startswith("local"):
         return date + ".dev1"
     else:
         return name
@@ -27,4 +27,5 @@ def hash_branch_name(branch_name):
 
 
 version = os.getenv("VERSION")
-__version__ = generate_version(version)
+print("Version: " + str(version))
+__version__ = generate_version(version) if version else version
