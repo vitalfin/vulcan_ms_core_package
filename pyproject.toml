@@ -5,7 +5,7 @@ requires = ["flit_core >=3.4,<4", "pytest-runner", "pep440", "pytz"]
 [project]
 dependencies = [
   "PyJWT==2.4.0",
-  "ujson==5.4.0",
+  "ujson==5.7.0",
   "fastapi==0.90.0",
   "SQLAlchemy==2.0.4",
   "opentelemetry-instrumentation-fastapi",
