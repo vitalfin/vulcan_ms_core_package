@@ -1,1 +1,1 @@
-VERSION="local" flit install
+VERSION="local" flit install -s
