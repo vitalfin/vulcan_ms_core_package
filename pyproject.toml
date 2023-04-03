@@ -7,7 +7,7 @@ dependencies = [
   "PyJWT==2.4.0",
   "ujson==5.4.0",
   "fastapi==0.90.0",
-  "SQLAlchemy==2.0.4",
+  "SQLAlchemy==2.0.8",
   "opentelemetry-instrumentation-fastapi",
   "opentelemetry-api",
   "opentelemetry-sdk",
